@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/api';
+	import { appSession } from '$lib/store';
+	console.log($appSession);
 
 	async function newApplication() {
 		const { id } = await post('/applications/new', {});
@@ -58,23 +60,25 @@
 				</svg>Application</button
 			>
 		</li>
-		<li>
-			<button on:click={newService} class="no-underline hover:bg-services tracking-wide font-bold">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
+		{#if $appSession.teamId === "0"}			
+			<li>
+				<button on:click={newService} class="no-underline hover:bg-services tracking-wide font-bold">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
+					</svg>Service</button
 				>
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
-				</svg>Service</button
-			>
-		</li>
+			</li>
+		{/if}
 		<li>
 			<button on:click={newDatabase} class="no-underline hover:bg-databases  tracking-wide font-bold">
 				<svg

@@ -19,6 +19,14 @@ import { scheduler } from "../../../lib/scheduler";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import type { Login, Update } from ".";
 import type { GetCurrentUser } from "./types";
+import LdapAuth from "ldapauth-fork";
+
+const ldapAuth = new LdapAuth({
+	url: 'ldap://10.252.92.100',
+	searchBase: 'DC=kmitl,DC=ac,DC=th',
+	searchFilter: '(mail={{username}})',
+	reconnect: true
+});
 
 export async function hashPassword(password: string): Promise<string> {
 	const saltRounds = 15;
@@ -247,6 +255,24 @@ export async function showDashboard(request: FastifyRequest) {
 	}
 }
 
+async function getLdapUser(email: string, password: string) {
+	let user = await new Promise((resolve, reject) => {
+		try {
+			ldapAuth.authenticate(email, password, (err, usr) => {
+				if (usr != undefined) {
+					resolve(usr);
+				} else {
+					resolve(undefined);
+				}
+			});
+			ldapAuth.close();
+		} catch (e) {
+			reject(e)
+		}
+	});
+	return user;
+}
+
 export async function login(
 	request: FastifyRequest<Login>,
 	reply: FastifyReply
@@ -265,122 +291,169 @@ export async function login(
 			rejectOnNotFound: false,
 		});
 		if (!userFound && isLogin) {
-			throw { status: 500, message: "User not found." };
-		}
-		const { isRegistrationEnabled, id } = await prisma.setting.findFirst();
-		let uid = cuid();
-		let permission = "read";
-		let isAdmin = false;
+			let ldapuser = await getLdapUser(email, password);
+			if (ldapuser == undefined) {
+				throw { status: 500, message: "User not found." };
+			}
+			if (ldapuser) {
+				let uid = cuid();
+				const hashedPassword = await hashPassword(password);
+				let permission = 'read';
+				let isAdmin = false;
+				await prisma.user.create({
+					data: {
+						id: uid,
+						email: email,
+						password: hashedPassword,
+						type: 'email',
+						teams: {
+							create: {
+								id: uid,
+								name: uniqueName()
+							}
+						},
+						permission: { create: { teamId: uid, permission: 'owner' } }
+					},
+					include: { teams: true }
+				});
+				return {
+					userId: uid,
+					teamId: uid,
+					permission,
+					isAdmin
+				};
+			}
+		} else {
+			const { isRegistrationEnabled, id } = await prisma.setting.findFirst();
+			let uid = cuid();
+			let permission = "read";
+			let isAdmin = false;
 
-		if (users === 0) {
-			await prisma.setting.update({
-				where: { id },
-				data: { isRegistrationEnabled: false },
-			});
-			uid = "0";
-		}
-		if (userFound) {
-			if (userFound.type === "email") {
-				if (userFound.password === "RESETME") {
-					const hashedPassword = await hashPassword(password);
-					if (userFound.updatedAt < new Date(Date.now() - 1000 * 60 * 10)) {
-						if (userFound.id === "0") {
-							await prisma.user.update({
-								where: { email: userFound.email },
-								data: { password: "RESETME" },
-							});
+			if (users === 0) {
+				await prisma.setting.update({
+					where: { id },
+					data: { isRegistrationEnabled: false },
+				});
+				uid = "0";
+			}
+			if (userFound) {
+				if (userFound.type === "email") {
+					if (userFound.password === "RESETME") {
+						const hashedPassword = await hashPassword(password);
+						if (userFound.updatedAt < new Date(Date.now() - 1000 * 60 * 10)) {
+							if (userFound.id === "0") {
+								await prisma.user.update({
+									where: { email: userFound.email },
+									data: { password: "RESETME" },
+								});
+							} else {
+								await prisma.user.update({
+									where: { email: userFound.email },
+									data: { password: "RESETTIMEOUT" },
+								});
+							}
+
+							throw {
+								status: 500,
+								message:
+									"Password reset link has expired. Please request a new one.",
+							};
 						} else {
 							await prisma.user.update({
 								where: { email: userFound.email },
-								data: { password: "RESETTIMEOUT" },
+								data: { password: hashedPassword },
 							});
+							return {
+								userId: userFound.id,
+								teamId: userFound.id,
+								permission: userFound.permission,
+								isAdmin: true,
+							};
 						}
-
-						throw {
-							status: 500,
-							message:
-								"Password reset link has expired. Please request a new one.",
-						};
-					} else {
-						await prisma.user.update({
-							where: { email: userFound.email },
-							data: { password: hashedPassword },
-						});
-						return {
-							userId: userFound.id,
-							teamId: userFound.id,
-							permission: userFound.permission,
-							isAdmin: true,
-						};
 					}
-				}
 
-				const passwordMatch = await bcrypt.compare(
-					password,
-					userFound.password
-				);
-				if (!passwordMatch) {
+					const passwordMatch = await bcrypt.compare(
+						password,
+						userFound.password
+					);
+					if (!passwordMatch) {
+						const ldapUser = await getLdapUser(email, password);
+						if (!ldapUser) {							
+							throw {
+								status: 500,
+								message: "Wrong password or email address.",
+							};
+						}else{
+							const hashedPassword = await hashPassword(password);
+							await prisma.user.update({
+								where: { email: userFound.email },
+								data: { password: hashedPassword },
+							});
+							return {
+								userId: userFound.id,
+								teamId: userFound.id,
+								permission: userFound.permission,
+								isAdmin: true,
+							};
+						}
+					}
+					uid = userFound.id;
+					isAdmin = true;
+				}
+			} else {
+				permission = "owner";
+				isAdmin = true;
+				if (!isRegistrationEnabled) {
 					throw {
-						status: 500,
-						message: "Wrong password or email address.",
+						status: 404,
+						message: "Registration disabled by administrator.",
 					};
 				}
-				uid = userFound.id;
-				isAdmin = true;
-			}
-		} else {
-			permission = "owner";
-			isAdmin = true;
-			if (!isRegistrationEnabled) {
-				throw {
-					status: 404,
-					message: "Registration disabled by administrator.",
-				};
-			}
-			const hashedPassword = await hashPassword(password);
-			if (users === 0) {
-				await prisma.user.create({
-					data: {
-						id: uid,
-						email,
-						password: hashedPassword,
-						type: "email",
-						teams: {
-							create: {
-								id: uid,
-								name: uniqueName(),
-								destinationDocker: { connect: { network: "coolify" } },
+				const hashedPassword = await hashPassword(password);
+				if (users === 0) {
+					await prisma.user.create({
+						data: {
+							id: uid,
+							email,
+							password: hashedPassword,
+							type: "email",
+							teams: {
+								create: {
+									id: uid,
+									name: uniqueName(),
+									destinationDocker: { connect: { network: "coolify" } },
+								},
 							},
+							permission: { create: { teamId: uid, permission: "owner" } },
 						},
-						permission: { create: { teamId: uid, permission: "owner" } },
-					},
-					include: { teams: true },
-				});
-			} else {
-				await prisma.user.create({
-					data: {
-						id: uid,
-						email,
-						password: hashedPassword,
-						type: "email",
-						teams: {
-							create: {
-								id: uid,
-								name: uniqueName(),
+						include: { teams: true },
+					});
+				} else {
+					await prisma.user.create({
+						data: {
+							id: uid,
+							email,
+							password: hashedPassword,
+							type: "email",
+							teams: {
+								create: {
+									id: uid,
+									name: uniqueName(),
+								},
 							},
+							permission: { create: { teamId: uid, permission: "owner" } },
 						},
-						permission: { create: { teamId: uid, permission: "owner" } },
-					},
-					include: { teams: true },
-				});
+						include: { teams: true },
+					});
+				}
 			}
+			return {
+				userId: uid,
+				teamId: uid,
+				permission,
+				isAdmin,
+			};
 		}
-		return {
-			userId: uid,
-			teamId: uid,
-			permission,
-			isAdmin,
-		};
 	}
 }
 

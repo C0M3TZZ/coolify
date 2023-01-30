@@ -501,25 +501,27 @@
 					<line x1="17" y1="4" x2="17" y2="10" />
 				</svg> Applications</button
 			>
-			<button
-				class="btn btn-sm btn-ghost"
-				class:bg-services={$search === '!service'}
-				class:hover:bg-coollabs={$search !== '!service'}
-				on:click={() => doSearch('!service')}
-				><svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6 mr-2 hidden lg:block"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
+			{#if $appSession.teamId === "0"}
+				<button
+					class="btn btn-sm btn-ghost"
+					class:bg-services={$search === '!service'}
+					class:hover:bg-coollabs={$search !== '!service'}
+					on:click={() => doSearch('!service')}
+					><svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6 mr-2 hidden lg:block"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
+					</svg> Services</button
 				>
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
-				</svg> Services</button
-			>
+			{/if}
 			<button
 				class="btn btn-sm btn-ghost "
 				class:bg-databases={$search === '!db'}

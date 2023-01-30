@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { appSession } from '$lib/store';
 
 	async function newApplication() {
 		// const { id } = await post('/applications/new', {});
+		console.log($appSession);
 		return await goto(`/applications/${id}`, { replaceState: true });
 	}
 	async function newService() {

@@ -453,10 +453,13 @@ async function copySSLCertificates() {
 	try {
 		const pAll = await import('p-all');
 		const actions = [];
-		const certificates = await prisma.certificate.findMany({ include: { team: true } });
-		const teamIds = certificates.map((c) => c.teamId);
+		const certificates = await prisma.certificate.findMany({
+			where: {
+				teamId: "0",
+			}
+		});
 		const destinations = await prisma.destinationDocker.findMany({
-			where: { isCoolifyProxyUsed: true, teams: { some: { id: { in: [...teamIds] } } } }
+			where: { isCoolifyProxyUsed: true }
 		});
 		for (const certificate of certificates) {
 			const { id, key, cert } = certificate;
@@ -464,6 +467,7 @@ async function copySSLCertificates() {
 			await fs.writeFile(`/tmp/${id}-key.pem`, decryptedKey);
 			await fs.writeFile(`/tmp/${id}-cert.pem`, cert);
 			for (const destination of destinations) {
+				console.log("Push Cert to per docker container")
 				if (destination.remoteEngine) {
 					if (destination.remoteVerified) {
 						const { id: dockerId, remoteIpAddress } = destination;

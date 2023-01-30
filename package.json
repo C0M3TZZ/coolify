@@ -49,5 +49,8 @@
     "netlify",
     "open-source",
     "coolify"
-  ]
+  ],
+  "dependencies": {
+    "ldapauth-fork": "^5.0.5"
+  }
 }

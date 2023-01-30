@@ -16,12 +16,12 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-azuretools.vscode-docker",
-		"dbaeumer.vscode-eslint",
-		"svelte.svelte-vscode",
-		"ardenivanov.svelte-intellisense",
-		"Prisma.prisma",
-		"bradlc.vscode-tailwindcss",
-		"waderyan.gitblame"
+		"dbaeumer.vscode-eslint"
+		// "svelte.svelte-vscode",
+		// "ardenivanov.svelte-intellisense",
+		// "Prisma.prisma",
+		// "bradlc.vscode-tailwindcss",
+		// "waderyan.gitblame"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [3000, 3001],
