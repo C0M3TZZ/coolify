@@ -376,6 +376,7 @@ async function checkFluentBit() {
 	}
 }
 async function checkProxies() {
+	console.log("Check Proxies Trigger")
 	try {
 		const { default: isReachable } = await import('is-port-reachable');
 		let portReachable;
@@ -389,6 +390,7 @@ async function checkProxies() {
 		});
 		if (localDocker) {
 			portReachable = await isReachable(80, { host: ipv4 || ipv6 });
+			console.log(!portReachable);
 			if (!portReachable) {
 				await startTraefikProxy(localDocker.id);
 			}
@@ -467,7 +469,7 @@ async function copySSLCertificates() {
 			await fs.writeFile(`/tmp/${id}-key.pem`, decryptedKey);
 			await fs.writeFile(`/tmp/${id}-cert.pem`, cert);
 			for (const destination of destinations) {
-				console.log("Push Cert to per docker container")
+				// console.log("Push Cert to per docker container")
 				if (destination.remoteEngine) {
 					if (destination.remoteVerified) {
 						const { id: dockerId, remoteIpAddress } = destination;

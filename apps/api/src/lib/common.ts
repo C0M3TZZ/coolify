@@ -668,6 +668,7 @@ export async function executeCommand({
 }
 
 export async function startTraefikProxy(id: string): Promise<void> {
+	console.log("Start Traefik Trigger")
 	const { engine, network, remoteEngine, remoteIpAddress } =
 		await prisma.destinationDocker.findUnique({ where: { id } });
 	const { found } = await checkContainer({
@@ -675,6 +676,7 @@ export async function startTraefikProxy(id: string): Promise<void> {
 		container: 'coolify-proxy',
 		remove: true
 	});
+	console.log(found? "coolify-proxy found!" : "coolify-proxy not found!")
 	const { id: settingsId, ipv4, ipv6 } = await listSettings();
 
 	if (!found) {
@@ -714,6 +716,7 @@ export async function startTraefikProxy(id: string): Promise<void> {
 			--network coolify-infra \
 			-p "80:80" \
 			-p "443:443" \
+			-p "8080:8080" \
 			--name coolify-proxy \
 			-d ${defaultTraefikImage} \
 			--entrypoints.web.address=:80 \
@@ -721,6 +724,7 @@ export async function startTraefikProxy(id: string): Promise<void> {
 			--entrypoints.websecure.address=:443 \
 			--entrypoints.websecure.forwardedHeaders.insecure=true \
 			--providers.docker=true \
+			--api.insecure=true \
 			--providers.docker.exposedbydefault=false \
 			--providers.http.endpoint=${traefikUrl} \
 			--providers.http.pollTimeout=5s \
