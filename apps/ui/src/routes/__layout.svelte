@@ -144,10 +144,10 @@
 
 <svelte:head>
 	{#if !$appSession.whiteLabeled}
-		<title>Coolify</title>
+		<title>Iserv-Kmitl</title>
 		<link rel="icon" href="/favicon.png" />
 	{:else if $appSession.whiteLabeledDetails.icon}
-		<title>Coolify</title>
+		<title>Iserv-Kmitl</title>
 		<link rel="icon" href={$appSession.whiteLabeledDetails.icon} />
 	{/if}
 </svelte:head>

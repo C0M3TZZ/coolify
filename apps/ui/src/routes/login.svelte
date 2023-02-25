@@ -47,7 +47,7 @@
 
 <div class="flex lg:flex-row flex-col h-screen">
 	<div class="bg-Iserv bg-cover h-screen lg:flex hidden flex-col justify-end p-20 flex-1">
-		<h1 class="title lg:text-6xl mb-5 border-gradient text-white shadow">Iserv-Kmitl</h1>
+		<h1 class="title lg:text-6xl mb-5 border-gradient text-white shadow">Iserv</h1>
 		<h3 class="title text-white shadow">Made self-hosting simple.</h3>
 	</div>
 	<div class="flex flex-1 flex-col lg:max-w-2xl">
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<div class="prose">
-					<h4 class="text-black">Iserv</h4>
+					<h4 class="text-black">Iserv-Kmitl</h4>
 				</div>
 			{/if}
 		</div>
