@@ -104,17 +104,17 @@
 	<div class="flex border-b border-coolgray-500 mb-6">
 		<div class="title font-bold pb-3 pr-4">Docker Registries</div>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<label for="my-modal" class="btn btn-sm btn-primary" on:click={() => (isModalActive = true)}
+		<label for="my-modal" class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={() => (isModalActive = true)}
 			>Add Docker Registry</label
 		>
 	</div>
 	<div class="flex items-center pb-4 gap-2">
 		<div class="text-xs">Quick Action</div>
-		<button class="btn btn-sm text-xs" on:click={() => addRegistry('dockerhub')}>DockerHub</button>
-		<button class="btn btn-sm text-xs" on:click={() => addRegistry('gcrio')}
+		<button class="btn btn-sm text-xs btn-primary text-white hover:bg-coollabs-100" on:click={() => addRegistry('dockerhub')}>DockerHub</button>
+		<button class="btn btn-sm text-xs btn-primary text-white hover:bg-coollabs-100" on:click={() => addRegistry('gcrio')}
 			>Google Container Registry (gcr.io)</button
 		>
-		<button class="btn btn-sm text-xs" on:click={() => addRegistry('github')}
+		<button class="btn btn-sm text-xs btn-primary text-white hover:bg-coollabs-100" on:click={() => addRegistry('github')}
 			>GitHub Container Registry (ghcr.io)</button
 		>
 	</div>
@@ -155,13 +155,13 @@
 						>
 
 						<td>
-							<button on:click={() => setRegistry(registry)} class="btn btn-sm btn-primary"
+							<button on:click={() => setRegistry(registry)} class="btn btn-sm btn-primary text-white hover:bg-coollabs-100"
 								>Set</button
 							>
 							{#if registry.id !== '0'}
 								<button
 									on:click={() => deleteDockerRegistry(registry.id)}
-									class="btn btn-sm btn-error">Delete</button
+									class="btn btn-sm btn-error text-white hover:bg-red-700">Delete</button
 								>
 							{/if}
 						</td>
@@ -181,7 +181,7 @@
 			<div>
 				<form on:submit|preventDefault={handleSubmit}>
 					<label for="name" class="label">
-						<span class="label-text">Name</span>
+						<span class="label-text text-black">Name</span>
 					</label>
 					<CopyPasswordField
 						id="name"
@@ -191,7 +191,7 @@
 						required
 					/>
 					<label for="url" class="label">
-						<span class="label-text">URL</span>
+						<span class="label-text text-black">URL</span>
 					</label>
 					<CopyPasswordField
 						id="url"
@@ -201,7 +201,7 @@
 						required
 					/>
 					<label for="Username" class="label">
-						<span class="label-text">Username</span>
+						<span class="label-text text-black">Username</span>
 					</label>
 					<CopyPasswordField
 						id="Username"
@@ -210,7 +210,7 @@
 						placeholder="Username"
 					/>
 					<label for="Password" class="label">
-						<span class="label-text">Password</span>
+						<span class="label-text text-black">Password</span>
 					</label>
 					<CopyPasswordField
 						isPasswordField={true}
@@ -221,7 +221,7 @@
 					/>
 					<div class="flex items-center">
 						<label for="systemwide" class="label">
-							<span class="label-text">System Wide</span>
+							<span class="label-text text-black">System Wide</span>
 						</label>
 						<input
 							id="systemwide"
@@ -231,12 +231,12 @@
 						/>
 					</div>
 					<label for="my-modal">
-						<button type="submit" class="btn btn-sm btn-primary mt-4">Save</button></label
+						<button type="submit" class="btn btn-sm btn-primary mt-4 text-white hover:bg-coollabs-100">Save</button></label
 					>
 					<button
 						on:click={() => (isModalActive = false)}
 						type="button"
-						class="btn btn-sm btn-error">Cancel</button
+						class="btn btn-sm btn-error text-white hover:bg-red-700">Cancel</button
 					>
 				</form>
 			</div>

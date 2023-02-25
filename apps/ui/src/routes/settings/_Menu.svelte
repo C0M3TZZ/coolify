@@ -8,7 +8,8 @@
 		<span>General</span>
 	</li>
 	{#if $appSession.teamId === '0'}
-		<li class="rounded" class:bg-coollabs={$page.url.pathname === `/settings/coolify`}>
+		<li class="rounded hover:bg-coollabs" class:bg-coollabs={$page.url.pathname === `/settings/coolify`}
+		class:text-white={$page.url.pathname === `/settings/coolify`}>
 			<a href={`/settings/coolify`} class="no-underline w-full"
 				><svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +29,8 @@
 			>
 		</li>
 	{/if}
-	<li class="rounded" class:bg-coollabs={$page.url.pathname === `/settings/docker`}>
+	<li class="rounded hover:bg-coollabs" class:bg-coollabs={$page.url.pathname === `/settings/docker`}
+	class:text-white={$page.url.pathname === `/settings/docker`}>
 		<a href={`/settings/docker`} class="no-underline w-full">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +61,8 @@
 	<li class="menu-title">
 		<span>Keys & Certificates</span>
 	</li>
-	<li class="rounded" class:bg-coollabs={$page.url.pathname === `/settings/ssh`}>
+	<li class="rounded hover:bg-coollabs" class:bg-coollabs={$page.url.pathname === `/settings/ssh`}
+	class:text-white={$page.url.pathname === `/settings/ssh`}>
 		<a href={`/settings/ssh`} class="no-underline w-full"
 			><svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +82,8 @@
 			</svg>SSH Keys</a
 		>
 	</li>
-	<li class="rounded" class:bg-coollabs={$page.url.pathname === `/settings/certificates`}>
+	<li class="rounded hover:bg-coollabs" class:bg-coollabs={$page.url.pathname === `/settings/certificates`}
+	class:text-white={$page.url.pathname === `/settings/certificates`}>
 		<a href={`/settings/certificates`} class="no-underline w-full">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

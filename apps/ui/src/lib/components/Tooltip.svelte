@@ -5,6 +5,6 @@
 	export let triggeredBy = '#tooltip-default';
 </script>
 
-<Tooltip {triggeredBy} {placement} arrow={false} defaultClass={color + ' font-thin text-xs text-left border-none p-2'} style="custom"
+<Tooltip {triggeredBy} {placement} arrow={false} defaultClass={color + ' font-thin text-xs text-left border-none p-2 z-30 text-white'} style="custom"
 	><slot /></Tooltip
 >

@@ -85,9 +85,9 @@
 </script>
 
 <div class="container lg:mx-auto lg:p-0 px-8 pt-5">
-	<div class="input-group flex w-full">
+	<div class="input-group flex w-full shadow">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="btn btn-square cursor-default no-animation hover:bg-error" on:click={cleanupSearch}>
+		<div class="btn text-black hover:text-white bg-coolgray-200 btn-square border-transparent cursor-default no-animation hover:bg-error" on:click={cleanupSearch}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="w-6 h-6"

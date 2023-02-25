@@ -74,7 +74,8 @@
 	let debug = application.settings?.debug;
 	let previews = application.settings?.previews;
 	let dualCerts = application.settings?.dualCerts;
-	let isCustomSSL = application.settings?.isCustomSSL;
+	// let isCustomSSL = application.settings?.isCustomSSL;
+	let isCustomSSL = true;
 	let autodeploy = application.settings?.autodeploy;
 	let isBot = application.settings?.isBot;
 	let isDBBranching = application.settings?.isDBBranching;
@@ -133,6 +134,7 @@
 			application.fqdn = `http://${cuid()}.demo.coolify.io`;
 			await handleSubmit();
 		}
+		changeSettings('isCustomSSL');
 		await getBaseBuildImages();
 		if (!application.fqdn && fqdnEl) fqdnEl.focus();
 	});
@@ -183,7 +185,7 @@
 			autodeploy = !autodeploy;
 		}
 		if (name === 'isCustomSSL') {
-			isCustomSSL = !isCustomSSL;
+			isCustomSSL = true;
 		}
 		if (name === 'isBot') {
 			if ($status.application.overallStatus !== 'stopped') return;
@@ -231,7 +233,7 @@
 				isDBBranching = !isDBBranching;
 			}
 			if (name === 'isCustomSSL') {
-				isCustomSSL = !isCustomSSL;
+				isCustomSSL = true;
 			}
 			return errorNotification(error);
 		} finally {
@@ -685,8 +687,8 @@
 								class:border={!application.settings?.isBot && !application.fqdn}
 								class:border-red-500={!application.settings?.isBot && !application.fqdn}
 								bind:value={application.fqdn}
-								pattern="^https?://([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{'{'}2,{'}'}$"
-								placeholder="eg: https://coollabs.io"
+								pattern="^https?:\/\/(.+)\.(iserv\.kmitl\.ac\.th$)"
+								placeholder="eg: https://application.iserv.kmitl.ac.th"
 							/>
 							{#if forceSave}
 								<div class="flex-col space-y-2 pt-4 text-center">
@@ -724,7 +726,7 @@
 							{/if}
 						</div>
 					</div>
-					<div class="grid grid-cols-2 items-center pb-4">
+					<!-- <div class="grid grid-cols-2 items-center pb-4">
 						<Setting
 							id="dualCerts"
 							dataTooltip={$t('forms.must_be_stopped_to_modify')}
@@ -735,8 +737,8 @@
 							description="Generate certificates for both www and non-www. <br>You need to have <span class='font-bold text-settings'>both DNS entries</span> set in advance.<br><br>Useful if you expect to have visitors on both."
 							on:click={() => !isDisabled && changeSettings('dualCerts')}
 						/>
-					</div>
-					{#if isHttps && application.buildPack !== 'compose'}
+					</div> -->
+					<!-- {#if isHttps && application.buildPack !== 'compose'}
 						<div class="grid grid-cols-2 items-center pb-4">
 							<Setting
 								id="isCustomSSL"
@@ -747,7 +749,7 @@
 								on:click={() => changeSettings('isCustomSSL')}
 							/>
 						</div>
-					{/if}
+					{/if} -->
 				{/if}
 			</div>
 			{#if isSimpleDockerfile}

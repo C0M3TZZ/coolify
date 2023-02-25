@@ -59,7 +59,7 @@
 <div class="mx-auto w-full">
 	<div class="flex border-b border-coolgray-500 mb-6">
 		<div class="title font-bold pb-3 pr-4">SSL Certificates <Beta /></div>
-		<label for="my-modal" class="btn btn-sm btn-primary" on:click={() => (isModalActive = true)}
+		<label for="my-modal" class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={() => (isModalActive = true)}
 			>Add SSL Certificate</label
 		>
 	</div>
@@ -78,7 +78,7 @@
 						<td>{cert.commonName}</td>
 						<td>{cert.createdAt}</td>
 						<td
-							><button on:click={() => deleteCertificate(cert.id)} class="btn btn-sm btn-error"
+							><button on:click={() => deleteCertificate(cert.id)} class="btn btn-sm btn-error text-white hover:bg-red-700"
 								>Delete</button
 							></td
 						>
@@ -125,12 +125,12 @@
 						/>
 					</div>
 					<label for="my-modal">
-						<button type="submit" class="btn btn-sm btn-primary mt-4">Upload</button></label
+						<button type="submit" class="btn btn-sm btn-primary mt-4 text-white hover:bg-coollabs-100">Upload</button></label
 					>
 					<button
 						on:click={() => (isModalActive = false)}
 						type="button"
-						class="btn btn-sm btn-error">Cancel</button
+						class="btn btn-sm btn-error text-white hover:bg-red-700">Cancel</button
 					>
 				</form>
 			</div>

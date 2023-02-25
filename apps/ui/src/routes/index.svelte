@@ -474,12 +474,13 @@
 		<NewResource />
 	{/if}
 </nav>
-<div class="container lg:mx-auto lg:p-0 px-8 pt-5">
+<div class="container px-8 pt-5">
 	{#if applications.length !== 0 || destinations.length !== 0 || databases.length !== 0 || services.length !== 0 || gitSources.length !== 0 || destinations.length !== 0}
 		<div class="space-x-2 lg:flex lg:justify-center text-center mb-4 ">
 			<button
 				class="btn btn-sm btn-ghost"
 				class:bg-applications={$search === '!app'}
+				class:text-white={$search === '!app'}
 				class:hover:bg-coollabs={$search !== '!app'}
 				on:click={() => doSearch('!app')}
 			>
@@ -505,6 +506,7 @@
 				<button
 					class="btn btn-sm btn-ghost"
 					class:bg-services={$search === '!service'}
+					class:text-white={$search === '!service'}
 					class:hover:bg-coollabs={$search !== '!service'}
 					on:click={() => doSearch('!service')}
 					><svg
@@ -525,6 +527,7 @@
 			<button
 				class="btn btn-sm btn-ghost "
 				class:bg-databases={$search === '!db'}
+				class:text-white={$search === '!db'}
 				class:hover:bg-coollabs={$search !== '!db'}
 				on:click={() => doSearch('!db')}
 			>
@@ -547,6 +550,7 @@
 			<button
 				class="btn btn-sm btn-ghost"
 				class:bg-sources={$search === '!git'}
+				class:text-white={$search === '!git'}
 				class:hover:bg-coollabs={$search !== '!git'}
 				on:click={() => doSearch('!git')}
 			>
@@ -572,6 +576,7 @@
 			<button
 				class="btn btn-sm btn-ghost"
 				class:bg-destinations={$search === '!destination'}
+				class:text-white={$search === '!destination'}
 				class:hover:bg-coollabs={$search !== '!destination'}
 				on:click={() => doSearch('!destination')}
 			>
@@ -601,10 +606,10 @@
 			>
 		</div>
 		<div class="form-control">
-			<div class="input-group flex w-full">
+			<div class="input-group flex w-full shadow">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
-					class="btn btn-square cursor-default no-animation hover:bg-error"
+					class="btn text-black hover:text-white bg-coolgray-200 btn-square border-transparent cursor-default no-animation hover:bg-error"
 					on:click={() => doSearch('')}
 				>
 					<svg
@@ -636,29 +641,29 @@
 			<label for="search" class="label w-full mt-3">
 				<span class="label-text text-xs flex flex-wrap gap-2 items-center">
 					<button
-						class:bg-coollabs={$search === '!bot'}
-						class="badge badge-lg text-white text-xs rounded"
+						class:badge-active={$search === '!bot'}
+						class="badge badge-lg text-xs rounded border-transparent shadow"
 						on:click={() => doSearch('!bot')}>Bots</button
 					>
 
 					<button
-						class:bg-coollabs={$search === '!notmine'}
-						class="badge badge-lg text-white text-xs rounded"
+						class:badge-active={$search === '!notmine'}
+						class="badge badge-lg text-xs rounded border-transparent shadow"
 						on:click={() => doSearch('!notmine')}>Other Teams</button
 					>
 					<button
-						class:bg-coollabs={$search === '!running'}
-						class="badge badge-lg text-white text-xs rounded"
+						class:badge-active={$search === '!running'}
+						class="badge badge-lg text-xs rounded border-transparent shadow"
 						on:click={() => doSearch('!running')}>Running</button
 					>
 					<button
-						class:bg-coollabs={$search === '!stopped'}
-						class="badge badge-lg text-white text-xs rounded"
+						class:badge-active={$search === '!stopped'}
+						class="badge badge-lg text-xs rounded border-transparent shadow"
 						on:click={() => doSearch('!stopped')}>Stopped</button
 					>
 					<button
-						class:bg-coollabs={$search === '!error'}
-						class="badge badge-lg text-white text-xs rounded"
+						class:badge-active={$search === '!error'}
+						class="badge badge-lg text-xs rounded border-transparent shadow"
 						on:click={() => doSearch('!error')}>Error</button
 					>
 				</span>
@@ -668,12 +673,12 @@
 	{#if (filtered.applications.length > 0 && applications.length > 0) || filtered.otherApplications.length > 0}
 		<div class="flex items-center mt-10 space-x-2">
 			<h1 class="title lg:text-3xl">Applications</h1>
-			<button class="btn btn-sm btn-primary" on:click={refreshStatusApplications}
+			<button class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={refreshStatusApplications}
 				>{noInitialStatus.applications ? 'Load Status' : 'Refresh Status'}</button
 			>
 			{#if foundUnconfiguredApplication && $appSession.isAdmin}
 				<button
-					class="btn btn-sm"
+					class="btn btn-sm btn-error text-white"
 					class:loading={loading.applications}
 					disabled={loading.applications}
 					on:click={cleanupApplications}>Cleanup Unconfigured Resources</button
@@ -918,12 +923,12 @@
 	{#if (filtered.services.length > 0 && services.length > 0) || filtered.otherServices.length > 0}
 		<div class="flex items-center mt-10 space-x-2">
 			<h1 class="title lg:text-3xl">Services</h1>
-			<button class="btn btn-sm btn-primary" on:click={refreshStatusServices}
+			<button class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={refreshStatusServices}
 				>{noInitialStatus.services ? 'Load Status' : 'Refresh Status'}</button
 			>
 			{#if foundUnconfiguredService}
 				<button
-					class="btn btn-sm"
+					class="btn btn-sm btn-error text-white"
 					class:loading={loading.services}
 					disabled={loading.services}
 					on:click={cleanupServices}>Cleanup Unconfigured Resources</button
@@ -1104,12 +1109,12 @@
 	{#if (filtered.databases.length > 0 && databases.length > 0) || filtered.otherDatabases.length > 0}
 		<div class="flex items-center mt-10 space-x-2">
 			<h1 class="title lg:text-3xl">Databases</h1>
-			<button class="btn btn-sm btn-primary" on:click={refreshStatusDatabases}
+			<button class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={refreshStatusDatabases}
 				>{noInitialStatus.databases ? 'Load Status' : 'Refresh Status'}</button
 			>
 			{#if foundUnconfiguredDatabase}
 				<button
-					class="btn btn-sm"
+					class="btn btn-sm btn-error text-white"
 					class:loading={loading.databases}
 					disabled={loading.databases}
 					on:click={cleanupDatabases}>Cleanup Unconfigured Resources</button
@@ -1336,7 +1341,7 @@
 											</svg>
 										{:else if source?.type === 'github'}
 											<svg viewBox="0 0 128 128" class="h-10 w-10">
-												<g fill="#ffffff"
+												<g fill="#000000"
 													><path
 														fill-rule="evenodd"
 														clip-rule="evenodd"
@@ -1427,7 +1432,7 @@
 										</svg>
 									{:else if source?.type === 'github'}
 										<svg viewBox="0 0 128 128" class="h-10 w-10">
-											<g fill="#ffffff"
+											<g fill="#000000"
 												><path
 													fill-rule="evenodd"
 													clip-rule="evenodd"

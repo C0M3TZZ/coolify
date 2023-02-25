@@ -29,7 +29,7 @@
 		>
 	</label>
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<div tabindex="0" class="card compact dropdown-content shadow bg-coolgray-400 rounded w-64">
+	<div tabindex="0" class="card compact dropdown-content shadow bg-coolgray-200 rounded w-64">
 		<div class="card-body">
 			<!-- <h2 class="card-title">You needed more info?</h2>  -->
 			<p class="text-xs font-normal">{@html explanation}</p>

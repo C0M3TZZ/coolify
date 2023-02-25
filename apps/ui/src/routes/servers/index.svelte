@@ -66,9 +66,9 @@
 	<Grid3>
 		{#if destinations.length > 0}
 			{#each destinations as destination}
-				<a class="no-underline mb-5" href={`/destinations/${destination.id}`}>
+				<a class="no-underline mb-5 " href={`/destinations/${destination.id}`}>
 					<div
-						class="w-full rounded p-5 bg-coolgray-200 indicator duration-150"
+						class="w-full rounded p-5 bg-coolgray-200 hover:bg-blue-500 shadow indicator duration-150"
 					>
 						<div class="w-full flex flex-row">
 							<div class="absolute top-0 left-0 -m-5 h-10 w-10">

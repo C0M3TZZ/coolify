@@ -128,6 +128,7 @@
 	<button
 		on:click={followBuild}
 		class="btn btn-sm bg-coollabs"
+		class:text-black={currentStatus !== 'running'}
 		disabled={currentStatus !== 'running'}
 		class:bg-coolgray-300={followingLogs || currentStatus !== 'running'}
 		class:text-applications={followingLogs}
@@ -156,6 +157,7 @@
 		on:click={cancelBuild}
 		class:animation-spin={cancelInprogress}
 		class="btn btn-sm"
+		class:text-black={currentStatus !== 'running'}
 		disabled={currentStatus !== 'running'}
 		class:bg-coolgray-300={cancelInprogress || currentStatus !== 'running'}
 	>

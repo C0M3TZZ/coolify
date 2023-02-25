@@ -168,13 +168,13 @@
 		<div class="flex flex-row border-b border-coolgray-500 mb-6 space-x-2 items-center  pb-3">
 			<div class="title font-bold">{team.name}</div>
 
-			<button class="btn btn-sm bg-primary" on:click={handleSubmit}>{$t('forms.save')}</button>
+			<button class="btn btn-sm bg-primary text-white hover:bg-coollabs-100" on:click={handleSubmit}>{$t('forms.save')}</button>
 			<button
 				id="delete"
 				on:click={deleteTeam}
 				type="submit"
 				disabled={!$appSession.isAdmin}
-				class="btn btn-sm bg-error">Remove Team</button
+				class="btn btn-sm bg-error text-white hover:bg-red-500">Remove Team</button
 			>
 		</div>
 	</div>
@@ -230,13 +230,13 @@
 								})}</button
 							>
 							<button
-								class="btn btn-sm btn-error"
+								class="btn btn-sm btn-error text-white hover:bg-red-500"
 								on:click={() => removeFromTeam(permission.user.id)}>{$t('forms.remove')}</button
 							>
 						</td>
 					{:else if permission.user.id === $appSession.userId}
 						<td class="py-4 flex flex-row justify-center">
-							<button class="btn btn-sm btn-primary" on:click={() => leaveTeam(permission.user.id)}
+							<button class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={() => leaveTeam(permission.user.id)}
 								>Leave Team</button
 							>
 						</td>
@@ -270,7 +270,7 @@
 			<div class="flex space-x-1">
 				<div class="flex space-x-1">
 					<div class="title font-bold">{$t('team.invite_new_member')}</div>
-					<button class="btn btn-sm bg-primary" type="submit">{$t('team.send_invitation')}</button>
+					<button class="btn btn-sm bg-primary text-white hover:bg-coollabs-100" type="submit">{$t('team.send_invitation')}</button>
 				</div>
 			</div>
 			<SimpleExplainer text={$t('team.invite_only_register_explainer')} />
@@ -288,14 +288,17 @@
 						class="px-2 rounded-none rounded-l border border-dashed border-transparent"
 						type="button"
 						class:border-coolgray-300={invitation.permission !== 'read'}
-						class:bg-fuchsia-500={invitation.permission === 'read'}>{$t('team.read')}</button
+						class:bg-coollabs-100={invitation.permission === 'read'}
+						class:text-white={invitation.permission === 'read'}>{$t('team.read')}
+						</button
 					>
 					<button
 						on:click={() => (invitation.permission = 'admin')}
 						class="px-2 rounded-none rounded-r border border-dashed border-transparent"
 						type="button"
 						class:border-coolgray-300={invitation.permission !== 'admin'}
-						class:bg-red-500={invitation.permission === 'admin'}>{$t('team.admin')}</button
+						class:bg-coollabs-100={invitation.permission === 'admin'}
+						class:text-white={invitation.permission === 'admin'}>{$t('team.admin')}</button
 					>
 				</div>
 			</div>

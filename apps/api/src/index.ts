@@ -175,7 +175,7 @@ const host = '0.0.0.0';
 		setInterval(async () => {
 			await checkProxies();
 			await checkFluentBit();
-		}, 60000);
+		}, 10000);
 
 		// Refresh and check templates
 		setInterval(async () => {
@@ -514,6 +514,7 @@ async function copyRemoteCertificates(id: string, dockerId: string, remoteIpAddr
 	}
 }
 async function copyLocalCertificates(id: string) {
+	console.log("Copy Cert")
 	try {
 		await executeCommand({
 			command: `docker exec coolify-proxy sh -c 'test -d /etc/traefik/acme/custom/ || mkdir -p /etc/traefik/acme/custom/'`,

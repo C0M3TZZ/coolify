@@ -60,7 +60,7 @@
 <div class="w-full">
 	<div class="flex border-b border-coolgray-500 mb-6">
 		<div class="title font-bold pb-3 pr-4">SSH Keys</div>
-		<label for="my-modal" class="btn btn-sm btn-primary" on:click={() => (isModalActive = true)}
+		<label for="my-modal" class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={() => (isModalActive = true)}
 			>Add SSH Key</label
 		>
 	</div>
@@ -82,7 +82,7 @@
 							<td>{key.name}</td>
 							<td>{key.createdAt}</td>
 							<td
-								><button on:click={() => deleteSSHKey(key.id)} class="btn btn-sm btn-error"
+								><button on:click={() => deleteSSHKey(key.id)} class="btn btn-sm btn-error text-white hover:bg-red-700"
 									>Delete</button
 								></td
 							>
@@ -120,12 +120,12 @@
 						rows={15}
 					/>
 					<label for="my-modal">
-						<button type="submit" class="btn btn-sm btn-primary mt-4">Save</button></label
+						<button type="submit" class="btn btn-sm btn-primary mt-4 text-white hover:bg-coollabs-100">Save</button></label
 					>
 					<button
 						on:click={() => (isModalActive = false)}
 						type="button"
-						class="btn btn-sm btn-error">Cancel</button
+						class="btn btn-sm btn-error text-white hover:bg-red-700">Cancel</button
 					>
 				</form>
 			</div>

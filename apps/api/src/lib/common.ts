@@ -728,6 +728,7 @@ export async function startTraefikProxy(id: string): Promise<void> {
 			--providers.docker.exposedbydefault=false \
 			--providers.http.endpoint=${traefikUrl} \
 			--providers.http.pollTimeout=5s \
+			--accesslog=true \
 			--certificatesresolvers.letsencrypt.acme.httpchallenge=true \
 			--certificatesresolvers.letsencrypt.acme.storage=/etc/traefik/acme/acme.json \
 			--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web \

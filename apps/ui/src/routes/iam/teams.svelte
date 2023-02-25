@@ -54,7 +54,7 @@
 	<div class="mx-auto w-full">
 		<div class="flex flex-row border-b border-coolgray-500 mb-6 space-x-2 items-center  pb-3">
 			<div class="title font-bold">Teams</div>
-			<button on:click={newTeam} class="btn btn-sm btn-primary"> Add New Team </button>
+			<button on:click={newTeam} class="btn btn-sm btn-primary text-white hover:bg-coollabs-100"> Add New Team </button>
 		</div>
 	</div>
 </div>
@@ -62,13 +62,13 @@
 	{#each ownTeams as team}
 		<a href="/iam/teams/{team.id}" class="p-2 no-underline">
 			<div
-				class="flex flex-col w-full rounded p-5 bg-coolgray-200 hover:bg-coolgray-300 indicator duration-150 h-36"
+				class="flex flex-col w-full rounded p-5 bg-coolgray-200 hover:text-black shadow hover:bg-coolgray-300 indicator duration-150 h-36"
 			>
 				<div>
 					<div class="truncate text-center text-xl font-bold">
 						{team.name}
 						{#if $appSession.teamId === team.id}
-							<button class="badge bg-applications text-white font-bold rounded">Active Team</button
+							<button class="badge bg-applications text-white font-bold rounded border-transparent">Active Team</button
 							>
 						{/if}
 					</div>
@@ -80,7 +80,7 @@
 					{#if $appSession.teamId !== team.id}
 						<button
 							on:click|preventDefault={() => switchTeam(team.id)}
-							class="btn btn-sm btn-primary">Switch to this team</button
+							class="btn btn-sm btn-primary text-white hover:bg-coollabs-100">Switch to this team</button
 						>
 					{/if}
 				</div>
@@ -94,7 +94,7 @@
 		{#each allTeams as team}
 			<a href="/iam/teams/{team.id}" class="p-2 no-underline">
 				<div
-					class="flex flex-col w-full rounded p-5 bg-coolgray-200 hover:bg-coolgray-300 indicator duration-150 relative"
+					class="flex flex-col w-full rounded p-5 bg-coolgray-200 hover:bg-coolgray-300 hover:text-black indicator duration-150 relative"
 				>
 					<div class="truncate text-center text-xl font-bold">
 						{team.name}

@@ -137,6 +137,7 @@
 		<div class="flex lg:flex-row flex-col lg:space-y-0 space-y-2 space-x-0 lg:space-x-2 items-center lg:justify-center">
 				<div class="custom-select-wrapper w-full"><label for="repository" class="pb-1">Repository</label>
 					<Select
+					class="bg-coolgray-200"
 						placeholder={loading.repositories
 							? $t('application.configuration.loading_repositories')
 							: $t('application.configuration.select_a_repository')}
@@ -171,6 +172,7 @@
 				class="btn btn-wide btn-primary"
 				type="submit"
 				disabled={!showSave}
+				class:text-black={!showSave}
 				>{$t('forms.save')}</button
 			>
 		</div>

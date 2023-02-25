@@ -46,9 +46,9 @@
 </svelt:head>
 
 <div class="flex lg:flex-row flex-col h-screen">
-	<div class="bg-neutral-focus h-screen lg:flex hidden flex-col justify-end p-20 flex-1">
-		<h1 class="title lg:text-6xl mb-5 border-gradient">Coolify</h1>
-		<h3 class="title">Made self-hosting simple.</h3>
+	<div class="bg-Iserv bg-cover h-screen lg:flex hidden flex-col justify-end p-20 flex-1">
+		<h1 class="title lg:text-6xl mb-5 border-gradient text-white shadow">Iserv</h1>
+		<h3 class="title text-white shadow">Made self-hosting simple.</h3>
 	</div>
 	<div class="flex flex-1 flex-col lg:max-w-2xl">
 		<div class="flex flex-row p-8 items-center space-x-3">
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<div class="prose">
-					<h4>Coolify</h4>
+					<h4 class="text-black">Coolify</h4>
 				</div>
 			{/if}
 		</div>
@@ -74,8 +74,8 @@
 			class="w-full md:px-20 lg:px-10 xl:px-20 p-6 flex flex-col h-full justify-center items-center"
 		>
 			<div class="mb-5 w-full prose prose-neutral">
-				<h1 class="m-0 white">Welcome back</h1>
-				<h5>Please login to continue.</h5>
+				<h1 class="m-0 white text-black">Welcome back</h1>
+				<h5 class="text-black">Please login to continue.</h5>
 			</div>
 			<form on:submit|preventDefault={handleSubmit} class="flex flex-col py-4 space-y-3 w-full">
 				<input

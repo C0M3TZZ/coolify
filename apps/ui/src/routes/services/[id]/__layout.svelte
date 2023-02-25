@@ -254,6 +254,7 @@
 				<button
 					on:click={() => deleteService()}
 					disabled={!$appSession.isAdmin}
+					class:text-black={!$appSession.isAdmin}
 					class:bg-red-600={$appSession.isAdmin}
 					class:hover:bg-red-500={$appSession.isAdmin}
 					class="btn btn-sm btn-error text-sm"
@@ -291,6 +292,7 @@
 		{:else if $status.service.overallStatus === 'healthy'}
 			<button
 				disabled={!$isDeploymentEnabled || !$appSession.isAdmin}
+				class:text-black={!$isDeploymentEnabled || !$appSession.isAdmin}
 				class="btn btn-sm gap-2"
 				on:click={() => restartService()}
 			>
@@ -317,6 +319,7 @@
 				on:click={() => stopService(false)}
 				type="submit"
 				disabled={!$isDeploymentEnabled || !$appSession.isAdmin}
+				class:text-black={!$isDeploymentEnabled || !$appSession.isAdmin}
 				class="btn btn-sm gap-2"
 			>
 				<svg
@@ -340,6 +343,7 @@
 				on:click={() => stopService()}
 				type="submit"
 				disabled={!$isDeploymentEnabled || !$appSession.isAdmin}
+				class:text-black={!$isDeploymentEnabled || !$appSession.isAdmin}
 				class="btn btn-sm gap-2"
 			>
 				<svg
@@ -362,6 +366,7 @@
 				<button
 					class="btn btn-sm gap-2"
 					disabled={!$isDeploymentEnabled || !$appSession.isAdmin}
+					class:text-black={!$isDeploymentEnabled || !$appSession.isAdmin}
 					on:click={() => restartService()}
 				>
 					<svg
@@ -386,6 +391,7 @@
 				<button
 					class="btn btn-sm gap-2"
 					disabled={!$isDeploymentEnabled || !$appSession.isAdmin}
+					class:text-black={!$isDeploymentEnabled || !$appSession.isAdmin}
 					on:click={() => startService()}
 				>
 					<svg

@@ -8,8 +8,9 @@
 		<li class="menu-title">
 			<span>IAM</span>
 		</li>
-		<li class="rounded" class:bg-coollabs={$page.url.pathname === `/iam/pending`}>
-			<a href={`/iam/pending`} class="no-underline w-full"
+		<li class="rounded" class:bg-coollabs={$page.url.pathname === `/iam/pending`}
+		class:text-white={$page.url.pathname === `/iam/pending`}>
+			<a href={`/iam/pending`} class="no-underline w-full hover:bg-coollabs hover:text-white"
 				><svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="w-6 h-6"
@@ -28,12 +29,16 @@
 			>
 		</li>
 	{/if}
-	<li class="menu-title">
+	<li class="menu-title ">
 		<span>IAM</span>
 	</li>
 
-	<li class="rounded" class:bg-coollabs={$page.url.pathname === `/iam`}>
-		<a href={`/iam`} class="no-underline w-full"
+	<li
+		class="rounded"
+		class:bg-coollabs={$page.url.pathname === `/iam`}
+		class:text-white={$page.url.pathname === `/iam`}
+	>
+		<a href={`/iam`} class="no-underline w-full hover:bg-coollabs hover:text-white"
 			><svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="w-6 h-6"
@@ -50,8 +55,9 @@
 			</svg>{$appSession.userId === '0' && $appSession.teamId === '0' ? 'Accounts' : 'Account'}</a
 		>
 	</li>
-	<li class="rounded" class:bg-coollabs={$page.url.pathname.startsWith(`/iam/teams`)}>
-		<a href={`/iam/teams`} class="no-underline w-full"
+	<li class="rounded" class:bg-coollabs={$page.url.pathname.startsWith(`/iam/teams`)}
+	class:text-white={$page.url.pathname.startsWith(`/iam/teams`)}>
+		<a href={`/iam/teams`} class="no-underline w-full hover:bg-coollabs hover:text-white"
 			><svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="w-6 h-6"

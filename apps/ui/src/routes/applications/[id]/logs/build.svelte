@@ -137,7 +137,7 @@
 		<div class=" flex-1" />
 		<div class="form-control">
 			<label class="label cursor-pointer">
-				<span class="label-text text-white pr-4 font-bold">Enable Debug Logs</span>
+				<span class="label-text text-black pr-4 font-bold">Enable Debug Logs</span>
 				<input
 					type="checkbox"
 					checked={debug}

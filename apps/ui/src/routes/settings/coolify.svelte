@@ -271,10 +271,8 @@
 			<div class="title font-bold pb-3 pr-4">Coolify Settings</div>
 			<div class="flex flex-row space-x-2">
 				<button
-					class="btn btn-sm btn-primary"
+					class="btn btn-sm btn-primary text-white hover:bg-coollabs-100"
 					type="submit"
-					class:bg-orange-600={forceSave}
-					class:hover:bg-orange-400={forceSave}
 					class:loading={loading.save}
 					disabled={loading.save}
 					>{loading.save
@@ -285,14 +283,14 @@
 				>
 
 				{#if isFqdnSet}
-					<button on:click|preventDefault={removeFqdn} disabled={loading.remove} class="btn btn-sm"
+					<button on:click|preventDefault={removeFqdn} disabled={loading.remove} class="btn btn-sm "
 						>{loading.remove ? $t('forms.removing') : $t('forms.remove_domain')}</button
 					>
 				{/if}
 				<button
 					on:click={restartCoolify}
 					class:loading={loading.restart}
-					class="btn btn-sm btn-error">Restart Coolify</button
+					class="btn btn-sm btn-error text-white hover:bg-red-700">Restart Coolify</button
 				>
 			</div>
 		</div>
@@ -386,7 +384,7 @@
 						Rollback Coolify to a specific version
 						<Explainer
 							position="dropdown-bottom"
-							explanation="You can rollback to a specific version of Coolify. This will not affect your current running resources.<br><br><a href='https://github.com/coollabsio/coolify/releases' target='_blank'>See available versions</a>"
+							explanation="You can rollback to a specific version of Coolify. This will not affect your current running resources.<br><br><a class='hover:text-settings' href='https://github.com/coollabsio/coolify/releases' target='_blank'>See available versions</a>"
 						/>
 					</div>
 					<input
@@ -399,7 +397,7 @@
 					/>
 					<button
 						class:loading={loading.rollback}
-						class="btn btn-primary ml-2"
+						class="btn btn-primary ml-2 text-white hover:bg-coollabs-100"
 						disabled={!rollbackVersion || loading.rollback}
 						on:click|preventDefault|stopPropagation={rollback}>Rollback</button
 					>
@@ -428,7 +426,7 @@
 						Preview Domain Separator
 						<Explainer
 							position="dropdown-bottom"
-							explanation="The separator used in the PR/MR previews.<br><br>For example if you set it to: <span class='text-yellow-400 font-bold'>-</span><br> the preview domain will be like this: <br><br><span class='text-yellow-400 font-bold'>PRMRNumber-yourdomain.com</span><br><br>The default is: <span class='text-yellow-400 font-bold'>.</span><br>so the preview domain will be like this: <br><br><span class='text-yellow-400 font-bold'>PRMRNumber.yourdomain.com</span>"
+							explanation="The separator used in the PR/MR previews.<br><br>For example if you set it to: <span class='text-settings font-bold'>-</span><br> the preview domain will be like this: <br><br><span class='text-settings font-bold'>PRMRNumber-yourdomain.com</span><br><br>The default is: <span class='text-settings font-bold'>.</span><br>so the preview domain will be like this: <br><br><span class='text-settings font-bold'>PRMRNumber.yourdomain.com</span>"
 						/>
 					</div>
 					<input

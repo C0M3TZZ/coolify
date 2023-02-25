@@ -10,7 +10,7 @@ module.exports = {
 					"base-100": "#323232",
 					"base-200": "#242424",
 					"base-300": "#181818",
-					"primary": "#6B16ED",
+					"primary": "#E35205",
 					"primary-content": "#fff",
 					"secondary": "#343232",
 					"accent": "#343232",
@@ -40,22 +40,26 @@ module.exports = {
 				sans: ['Poppins', ...defaultTheme.fontFamily.sans]
 			},
 			colors: {
-				"applications": "#16A34A",
-				"databases": "#9333EA",
-				"databases-100": "#9b46ea",
-				"destinations": "#0284C7",
-				"sources": "#EA580C",
-				"services": "#DB2777",
-				"settings": "#FEE440",
+				"applications": "#E35205",
+				"databases": "#E35205",
+				"databases-100": "#EF6C00",
+				"destinations": "#E35205",
+				"sources": "#E35205",
+				"services": "#E35205",
+				"settings": "#f97316",
 				"iam": "#C026D3",
-				coollabs: '#6B16ED',
-				'coollabs-100': '#7317FF',
-				coolblack: '#141414',
-				'coolgray-100': '#181818',
-				'coolgray-200': '#202020',
-				'coolgray-300': '#242424',
-				'coolgray-400': '#282828',
-				'coolgray-500': '#323232'
+				coollabs: '#E35205',
+				'coollabs-100': '#EF6C00',
+				coolblack: '#FFFFFF',
+				'coolgray-100': '#fafafa',
+				'coolgray-200': '#fafafa',
+				'coolgray-300': '#f5f5f5',
+				'coolgray-400': '#e5e5e5',
+				'coolgray-500': '#d4d4d4',
+				'hover-primary': '#FEF9F7'
+			},
+			backgroundImage: {
+				'Iserv': "url('https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.6435-9/75625360_2708828382511763_3205029120262012928_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeFCLBL6ZQxLhfOgVvMrFcolOBRkihhNDX44FGSKGE0Nfp3aQDOLj78-yM8V_Kcqny9DAD7itLnLm5FN5xsYyABa&_nc_ohc=3Eq69vk6jyYAX8jXgul&_nc_ht=scontent.fbkk5-4.fna&oh=00_AfCqKedcDdLkeX9S6_lP8_FnTQkfU3se2BFWPiw-A43tQw&oe=64212ED8')"
 			}
 		}
 	},

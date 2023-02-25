@@ -42,20 +42,21 @@
 <div class="flex flex-col lg:flex-row lg:space-y-0 space-y-2 lg:space-x-4">
 	<input
 		disabled
-		class="input w-full text-white"
+		class="input w-full text-black"
 		readonly
 		placeholder="email"
 		value={account.email}
 	/>
 	<div class="flex flex-row items-center justify-center space-x-2 w-full lg:w-96">
 		<div class="flex items-center justify-center">
-			<button class="btn btn-sm btn-primary" on:click={() => resetPassword(account.id)}
+			<button class="btn btn-sm btn-primary text-white hover:bg-coollabs-100" on:click={() => resetPassword(account.id)}
 				>Reset Password</button
 			>
 		</div>
 		<div class="flex justify-center">
 			<button
-				class="btn btn-sm btn-error"
+				class="btn btn-sm btn-error text-white hover:bg-red-700"
+				class:text-black={account.id === $appSession.userId || account.id === '0'}
 				disabled={account.id === $appSession.userId || account.id === '0'}
 				on:click={() => deleteAccount(account.id)}>Delete Account</button
 			>

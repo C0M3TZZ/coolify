@@ -158,17 +158,17 @@
 	</div>
 {/if}
 
-<div class="drawer">
+<div class="drawer z-20">
 	<input id="main-drawer" type="checkbox" class="drawer-toggle" bind:this={sidedrawerToggler} />
 	<div class="drawer-content">
 		{#if $appSession.userId}
-			<Tooltip triggeredBy="#dashboard" placement="right" color="bg-pink-500">Dashboard</Tooltip>
-			<Tooltip triggeredBy="#servers" placement="right" color="bg-sky-500">Servers</Tooltip>
-			<Tooltip triggeredBy="#iam" placement="right" color="bg-iam">IAM</Tooltip>
-			<Tooltip triggeredBy="#settings" placement="right" color="bg-settings text-black"
+			<Tooltip triggeredBy="#dashboard" placement="right" color="bg-primary text-white">Dashboard</Tooltip>
+			<Tooltip triggeredBy="#servers" placement="right" color="bg-primary text-white">Servers</Tooltip>
+			<Tooltip triggeredBy="#iam" placement="right" color="bg-primary text-white">IAM</Tooltip>
+			<Tooltip triggeredBy="#settings" placement="right" color="bg-primary text-white"
 				>Settings</Tooltip
 			>
-			<Tooltip triggeredBy="#logout" placement="right" color="bg-red-600">Logout</Tooltip>
+			<Tooltip triggeredBy="#logout" placement="right" color="bg-primary text-white">Logout</Tooltip>
 			<nav class="nav-main hidden lg:block z-20">
 				<div class="flex h-screen w-full flex-col items-center transition-all duration-100">
 					{#if !$appSession.whiteLabeled}
@@ -184,8 +184,8 @@
 						<a
 							id="dashboard"
 							href="/"
-							class="icons hover:text-pink-500"
-							class:text-pink-500={$page.url.pathname === '/'}
+							class="icons hover:text-primary"
+							class:text-primary={$page.url.pathname === '/'}
 							class:bg-coolgray-500={$page.url.pathname === '/'}
 							class:bg-coolgray-200={!($page.url.pathname === '/')}
 						>
@@ -210,8 +210,8 @@
 							<a
 								id="servers"
 								href="/servers"
-								class="icons hover:text-sky-500"
-								class:text-sky-500={$page.url.pathname === '/servers'}
+								class="icons hover:text-primary"
+								class:text-primary={$page.url.pathname === '/servers'}
 								class:bg-coolgray-500={$page.url.pathname === '/servers'}
 								class:bg-coolgray-200={!($page.url.pathname === '/servers')}
 							>
@@ -235,15 +235,15 @@
 						{/if}
 					</div>
 					<div class="flex-1" />
-					<div class="lg:block hidden">
+					<!-- <div class="lg:block hidden">
 						<UpdateAvailable />
-					</div>
+					</div> -->
 					<div class="flex flex-col space-y-2 py-2">
 						<a
 							id="iam"
 							href={$appSession.pendingInvitations.length > 0 ? '/iam/pending' : '/iam'}
-							class="icons hover:text-iam indicator"
-							class:text-iam={$page.url.pathname.startsWith('/iam')}
+							class="icons hover:text-primary indicator"
+							class:text-primary={$page.url.pathname.startsWith('/iam')}
 							class:bg-coolgray-500={$page.url.pathname.startsWith('/iam')}
 						>
 							{#if $appSession.pendingInvitations.length > 0}
@@ -270,8 +270,8 @@
 						<a
 							id="settings"
 							href={$appSession.teamId === '0' ? '/settings/coolify' : '/settings/docker'}
-							class="icons hover:text-settings"
-							class:text-settings={$page.url.pathname.startsWith('/settings')}
+							class="icons hover:text-primary"
+							class:text-primary={$page.url.pathname.startsWith('/settings')}
 							class:bg-coolgray-500={$page.url.pathname.startsWith('/settings')}
 						>
 							<svg
@@ -291,7 +291,7 @@
 								<circle cx="12" cy="12" r="3" />
 							</svg>
 						</a>
-						<a
+						<!-- <a
 							id="documentation"
 							href="https://docs.coollabs.io/coolify/"
 							target="_blank"
@@ -312,7 +312,7 @@
 									d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
 								/>
 							</svg>
-						</a>
+						</a> -->
 
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<div
@@ -387,9 +387,10 @@
 		<ul class="menu bg-coolgray-200 w-60 p-2  space-y-3 pt-4 ">
 			<li>
 				<a
-					class="no-underline icons hover:text-white hover:bg-pink-500"
+					class="no-underline icons hover:text-white hover:bg-primary"
 					href="/"
-					class:bg-pink-500={$page.url.pathname === '/'}
+					class:bg-primary={$page.url.pathname === '/'}
+					class:text-white={$page.url.pathname === '/'}
 					on:click={closeDrawer}
 				>
 					<svg
@@ -415,9 +416,10 @@
 			<li>
 				<a
 					id="servers"
-					class="no-underline icons hover:text-white hover:bg-sky-500"
+					class="no-underline icons hover:text-white hover:bg-primary"
 					href="/servers"
-					class:bg-sky-500={$page.url.pathname.startsWith('/servers')}
+					class:bg-primary={$page.url.pathname.startsWith('/servers')}
+					class:text-white={$page.url.pathname.startsWith('/servers')}
 					on:click={closeDrawer}
 				>
 					<svg
@@ -441,9 +443,9 @@
 			</li>
 			<li>
 				<a
-					class="no-underline icons hover:text-white hover:bg-iam"
+					class="no-underline icons hover:text-white hover:bg-primary"
 					href="/iam"
-					class:bg-iam={$page.url.pathname.startsWith('/iam')}
+					class:bg-primary={$page.url.pathname.startsWith('/iam')}
 					on:click={closeDrawer}
 					><svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -470,9 +472,10 @@
 			</li>
 			<li>
 				<a
-					class="no-underline icons hover:text-black hover:bg-settings"
+					class="no-underline icons hover:text-black hover:bg-primary"
 					href={$appSession.teamId === '0' ? '/settings/coolify' : '/settings/ssh'}
-					class:bg-settings={$page.url.pathname.startsWith('/settings')}
+					class:bg-primary={$page.url.pathname.startsWith('/settings')}
+					class:text-white={$page.url.pathname.startsWith('/settings')}
 					class:text-black={$page.url.pathname.startsWith('/settings')}
 					on:click={closeDrawer}
 				>
@@ -520,9 +523,9 @@
 				</a>
 			</li>
 			<li class="flex-1 bg-transparent" />
-			<div class="block lg:hidden">
+			<!-- <div class="block lg:hidden">
 				<UpdateAvailable />
-			</div>
+			</div> -->
 			<li>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div class="no-underline icons hover:bg-error" on:click={logout}>

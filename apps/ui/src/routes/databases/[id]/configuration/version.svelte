@@ -58,7 +58,7 @@
 	{#each versions as version}
 		<div class="p-2">
 			<form on:submit|preventDefault={() => handleSubmit(version)}>
-				<button type="submit" class="box-selection text-xl font-bold hover:bg-purple-700"
+				<button type="submit" class="box-selection text-xl font-bold hover:bg-primary hover:text-white"
 					>{version}</button
 				>
 			</form>

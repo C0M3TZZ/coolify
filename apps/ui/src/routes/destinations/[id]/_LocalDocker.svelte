@@ -145,16 +145,18 @@
 	<div class="flex space-x-2">
 		<button
 			type="submit"
-			class="btn btn-sm"
+			class="btn btn-sm text-white"
 			class:bg-destinations={!loading.save}
+			class:hover:bg-coollabs-100={!loading.save}
 			class:loading={loading.save}
 			disabled={loading.save}
 			>{$t('forms.save')}
 		</button>
 		<button
-			class="btn btn-sm"
+			class="btn btn-sm text-white "
 			class:loading={loading.restart}
 			class:bg-error={!loading.restart}
+			class:hover:bg-red-700={!loading.restart}
 			disabled={loading.restart}
 			on:click|preventDefault={forceRestartProxy}>{$t('destination.force_restart_proxy')}</button
 		>

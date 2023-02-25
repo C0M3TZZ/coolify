@@ -51,7 +51,7 @@
 	{#each types as type}
 		<div class="p-2">
 			<form on:submit|preventDefault={() => handleSubmit(type.name)}>
-				<button type="submit" class="box-selection relative text-xl font-bold hover:bg-purple-700">
+				<button type="submit" class="box-selection relative text-xl font-bold hover:bg-primary hover:text-white">
           <DatabaseIcons type={type.name} isAbsolute={true} />
 					{type.fancyName}
 				</button>

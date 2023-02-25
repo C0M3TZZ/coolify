@@ -21,7 +21,7 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div class="dropdown dropdown-bottom">
 	<slot>
-		<label for="new" tabindex="0" class="btn btn-sm text-sm bg-coollabs hover:bg-coollabs-100 w-64">
+		<label for="new" tabindex="0" class="btn btn-sm text-sm btn-ghost text-white bg-coollabs hover:bg-coollabs-100 w-64">
 			<svg
 				class="h-6 w-6"
 				xmlns="http://www.w3.org/2000/svg"
@@ -38,9 +38,9 @@
 		</label>
 	</slot>
 
-	<ul id="new" tabindex="0" class="dropdown-content menu p-2 shadow bg-coolgray-300 rounded w-64">
+	<ul id="new" tabindex="0" class="dropdown-content menu p-2 shadow bg-coolgray-200 rounded w-64">
 		<li>
-			<button on:click={newApplication} class="no-underline hover:bg-applications tracking-wide font-bold">
+			<button on:click={newApplication} class="no-underline hover:bg-applications tracking-wide font-bold hover:text-white">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"
@@ -62,7 +62,7 @@
 		</li>
 		{#if $appSession.teamId === "0"}			
 			<li>
-				<button on:click={newService} class="no-underline hover:bg-services tracking-wide font-bold">
+				<button on:click={newService} class="no-underline hover:bg-services tracking-wide font-bold hover:text-white">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-6 w-6"
@@ -80,7 +80,7 @@
 			</li>
 		{/if}
 		<li>
-			<button on:click={newDatabase} class="no-underline hover:bg-databases  tracking-wide font-bold">
+			<button on:click={newDatabase} class="no-underline hover:bg-databases  tracking-wide font-bold hover:text-white">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"
@@ -99,7 +99,7 @@
 			>
 		</li>
 		<li>
-			<a href="/sources/new" class="no-underline hover:bg-sources tracking-wide font-bold">
+			<a href="/sources/new" class="no-underline hover:bg-sources tracking-wide font-bold hover:text-white">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"
@@ -121,7 +121,7 @@
 			>
 		</li>
 		<li>
-			<a href="/destinations/new" class="no-underline hover:bg-destinations tracking-wide font-bold">
+			<a href="/destinations/new" class="no-underline hover:bg-destinations tracking-wide font-bold hover:text-white">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"
