@@ -1202,8 +1202,8 @@
 									name="fqdn"
 									id="fqdn"
 									bind:value={dockerComposeConfiguration[service.name].fqdn}
-									pattern="^https?://([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{'{'}2,{'}'}$"
-									placeholder="eg: https://coollabs.io"
+									pattern="^https?:\/\/(.+)\.(iserv\.kmitl\.ac\.th$)"
+									placeholder="eg: https://application.iserv.kmitl.ac.th"
 								/>
 							</div>
 						</div>
