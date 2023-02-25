@@ -687,7 +687,7 @@
 								class:border={!application.settings?.isBot && !application.fqdn}
 								class:border-red-500={!application.settings?.isBot && !application.fqdn}
 								bind:value={application.fqdn}
-								pattern="^https?:\/\/(.+)\.(iserv\.kmitl\.ac\.th$)"
+								pattern="^https?:\/\/(.+)\.(polalab\.space$)"
 								placeholder="eg: https://application.iserv.kmitl.ac.th"
 							/>
 							{#if forceSave}
@@ -1202,7 +1202,7 @@
 									name="fqdn"
 									id="fqdn"
 									bind:value={dockerComposeConfiguration[service.name].fqdn}
-									pattern="^https?:\/\/(.+)\.(iserv\.kmitl\.ac\.th$)"
+									pattern="^https?:\/\/(.+)\.(polalab\.space$)"
 									placeholder="eg: https://application.iserv.kmitl.ac.th"
 								/>
 							</div>
