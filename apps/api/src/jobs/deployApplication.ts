@@ -705,6 +705,9 @@ import * as buildpacks from '../lib/buildPacks';
 													[imageId]: {
 														image: imageFound,
 														container_name: imageId,
+														mem_limit: "512m",
+														mem_reservation: "256m",
+														cpu_shares: 700,
 														volumes,
 														environment: envs,
 														labels,
